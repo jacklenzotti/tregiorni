@@ -3,3 +3,5 @@ dist/
 .wrangler/
 *.local
 .DS_Store
+test-results/
+playwright-report/

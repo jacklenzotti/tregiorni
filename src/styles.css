@@ -5,6 +5,7 @@
   --card: #ffffff;
   --line: #e3ded4;
   --accent: #b5443c;
+  --accent-strong: #9a3a33;
   --accent-soft: #f3e2e0;
   --warn: #a05a00;
   --warn-soft: #fdf1de;
@@ -67,30 +68,22 @@ select {
 
 .app {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 42%;
+  grid-template-columns: minmax(0, 1fr);
   min-height: 100vh;
 }
 
 .doc {
   padding: 1.5rem 2rem 4rem;
   max-width: 46rem;
-  justify-self: end;
+  justify-self: center;
   width: 100%;
 }
 
-.map-pane {
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  border-left: 1px solid var(--line);
-  background: #eef0ec;
-}
-
-.map-stub {
-  height: 100%;
-  display: grid;
-  place-items: center;
-  color: var(--ink-soft);
+.trip-header-area {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
 }
 
 .trip-header {
@@ -99,7 +92,64 @@ select {
   justify-content: space-between;
   align-items: end;
   gap: 1rem;
-  margin-bottom: 1.5rem;
+}
+
+.prefs-bar {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--card);
+  padding: 0.75rem 1rem;
+}
+
+.prefs-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 0.75rem;
+}
+
+.prefs-controls label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+  font-size: 0.75rem;
+  color: var(--ink-soft);
+}
+
+button.accent {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+  margin-left: auto;
+}
+
+button.accent:hover:not(:disabled) {
+  background: var(--accent-strong);
+  border-color: var(--accent-strong);
+  color: #fff;
+}
+
+.day-trip-note {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.75rem;
+}
+
+.budget-card {
+  margin: 0;
+  color: var(--ink-soft);
+  font-size: 0.85rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.day-budget {
+  color: var(--ink-soft);
+  font-weight: 400;
+  font-size: 0.85rem;
+  margin-left: 0.5rem;
 }
 
 .trip-header h1 {
@@ -388,11 +438,29 @@ select {
     grid-template-columns: 1fr;
   }
 
-  .map-pane {
-    display: none;
-  }
-
   .doc {
     justify-self: stretch;
   }
+}
+
+.badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  margin-top: 0.2rem;
+}
+
+.badge {
+  border: 1px solid var(--line);
+  color: var(--ink-soft);
+  background: var(--paper);
+  font-size: 0.7rem;
+  padding: 0.1rem 0.45rem;
+  border-radius: 999px;
+  cursor: help;
+}
+
+.seasonal-note {
+  color: var(--warn);
+  font-size: 0.75rem;
 }

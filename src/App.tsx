@@ -21,7 +21,12 @@ export function App() {
   return (
     <div className="app">
       <div className="doc">
-        <TripHeader settings={state.settings} dispatch={dispatch} />
+        <TripHeader
+          settings={state.settings}
+          prefs={state.prefs}
+          itinerary={state.itinerary}
+          dispatch={dispatch}
+        />
         <ExplorePanel usedIds={usedIds} dispatch={dispatch} />
         {DAY_INDEXES.map((day) => (
           <DaySection

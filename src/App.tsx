@@ -1,6 +1,7 @@
 import { useMemo, useReducer } from 'react';
 import { DaySection } from './components/DaySection';
 import { ExplorePanel } from './components/ExplorePanel';
+import { MapPanel } from './components/MapPanel';
 import { TripHeader } from './components/TripHeader';
 import { PLACES_BY_ID } from './data/places';
 import { scheduleItineraryDay } from './domain/itinerary/scheduleDay';
@@ -40,6 +41,9 @@ export function App() {
           />
         ))}
       </div>
+      <aside className="map-pane">
+        <MapPanel schedules={schedules} selectedStopId={state.selectedStopId} dispatch={dispatch} />
+      </aside>
     </div>
   );
 }

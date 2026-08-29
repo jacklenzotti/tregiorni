@@ -68,15 +68,63 @@ select {
 
 .app {
   display: grid;
-  grid-template-columns: minmax(0, 1fr);
+  grid-template-columns: minmax(0, 1fr) 42%;
   min-height: 100vh;
 }
 
 .doc {
   padding: 1.5rem 2rem 4rem;
   max-width: 46rem;
-  justify-self: center;
+  justify-self: end;
   width: 100%;
+}
+
+.map-pane {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  border-left: 1px solid var(--line);
+  background: #eef0ec;
+}
+
+.map-wrap {
+  position: relative;
+  height: 100%;
+}
+
+.map {
+  height: 100%;
+  width: 100%;
+}
+
+.map-hint {
+  position: absolute;
+  left: 50%;
+  bottom: 1.5rem;
+  transform: translateX(-50%);
+  z-index: 1000;
+  pointer-events: none;
+  white-space: nowrap;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  padding: 0.35rem 0.9rem;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  box-shadow: 0 6px 16px rgb(0 0 0 / 0.08);
+}
+
+.map-marker {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 600;
+  box-shadow: 0 1px 4px rgb(0 0 0 / 0.35);
 }
 
 .trip-header-area {
@@ -436,6 +484,10 @@ button.accent:hover:not(:disabled) {
 @media (max-width: 900px) {
   .app {
     grid-template-columns: 1fr;
+  }
+
+  .map-pane {
+    display: none;
   }
 
   .doc {

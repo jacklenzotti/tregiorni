@@ -1,0 +1,34 @@
+:root {
+  --ink: #1f2430;
+  --ink-soft: #5b6272;
+  --paper: #faf8f4;
+  --card: #ffffff;
+  --line: #e3ded4;
+  --accent: #b5443c;
+  --accent-soft: #f3e2e0;
+  --day-1: #b5443c;
+  --day-2: #2e6f5e;
+  --day-3: #3c5a99;
+  --radius: 10px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family:
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    sans-serif;
+  color: var(--ink);
+  background: var(--paper);
+}
+
+.hello {
+  max-width: 40rem;
+  margin: 20vh auto;
+  padding: 0 1.5rem;
+}

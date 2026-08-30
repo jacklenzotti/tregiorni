@@ -205,11 +205,6 @@ button.accent:hover:not(:disabled) {
   font-size: 1.9rem;
 }
 
-.tagline {
-  margin: 0.2rem 0 0;
-  color: var(--ink-soft);
-}
-
 .trip-controls {
   display: flex;
   align-items: center;
@@ -288,6 +283,15 @@ button.accent:hover:not(:disabled) {
 .place-list {
   max-height: 24rem;
   overflow-y: auto;
+}
+
+.pager {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--line);
 }
 
 .place-card {

@@ -10,18 +10,24 @@ import { PlaceCard } from './PlaceCard';
 import { PriceSelect } from './PriceSelect';
 import { TagRow } from './TagRow';
 
-const VISIBLE_LIMIT = 30;
+const PAGE_SIZE = 30;
 const TYPES = distinctTypes(CATALOG);
 const TAGS = topTags(CATALOG, 10);
 
 export function ExplorePanel({ usedIds, dispatch }: { usedIds: Set<string>; dispatch: AppDispatch }) {
-  const [filters, setFilters] = useState<CatalogFilters>({
+  const [filters, setFiltersState] = useState<CatalogFilters>({
     query: '',
     type: 'all',
     maxPrice: 4,
     tags: [],
   });
+  const [page, setPage] = useState(0);
+  const setFilters = (update: (f: CatalogFilters) => CatalogFilters) => {
+    setFiltersState(update);
+    setPage(0);
+  };
   const results = useMemo(() => filterPlaces(CATALOG, filters), [filters]);
+  const pageCount = Math.ceil(results.length / PAGE_SIZE);
 
   return (
     <details className="explore" open>
@@ -30,7 +36,7 @@ export function ExplorePanel({ usedIds, dispatch }: { usedIds: Set<string>; disp
       </summary>
       <Filters filters={filters} setFilters={setFilters} />
       <ul className="place-list">
-        {results.slice(0, VISIBLE_LIMIT).map((place) => (
+        {results.slice(page * PAGE_SIZE, (page + 1) * PAGE_SIZE).map((place) => (
           <PlaceCard
             key={place.id}
             place={place}
@@ -39,8 +45,22 @@ export function ExplorePanel({ usedIds, dispatch }: { usedIds: Set<string>; disp
           />
         ))}
       </ul>
-      {results.length > VISIBLE_LIMIT && (
-        <p className="muted">…and {results.length - VISIBLE_LIMIT} more — refine the filters.</p>
+      {pageCount > 1 && (
+        <div className="pager">
+          <button className="ghost" disabled={page === 0} onClick={() => setPage(page - 1)}>
+            ‹ Prev
+          </button>
+          <span className="muted">
+            {page + 1} / {pageCount}
+          </span>
+          <button
+            className="ghost"
+            disabled={page + 1 >= pageCount}
+            onClick={() => setPage(page + 1)}
+          >
+            Next ›
+          </button>
+        </div>
       )}
     </details>
   );

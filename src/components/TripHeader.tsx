@@ -29,10 +29,7 @@ export function TripHeader({ settings, prefs, itinerary, dispatch }: TripHeaderP
   return (
     <header className="trip-header-area">
       <div className="trip-header">
-        <div>
-          <h1>Tre Giorni</h1>
-          <p className="tagline">Three days in Italy, planned around real opening hours.</p>
-        </div>
+        <h1>Tre Giorni</h1>
         <div className="trip-controls">
           <label>
             Start day
